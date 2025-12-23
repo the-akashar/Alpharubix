@@ -1,5 +1,4 @@
 <app-header></app-header>
-
 <div class="limiter">
   <div class="container-login100">
     <div class="wrap-login100">
@@ -9,8 +8,6 @@
         #loginForm="ngForm"
       >
         <span class="login100-form-title"> Sign In </span>
-
-        <!-- EMAIL -->
         <div class="form-group">
           <div
             class="wrap-input100 validate-input m-b-16"
@@ -23,32 +20,26 @@
               id="email"
               placeholder="Email"
               required
-              value="happy@example.com"
               pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               [(ngModel)]="model.email"
               #email="ngModel"
             />
             <span class="focus-input100"></span>
           </div>
-
           <span
             class="text-danger"
             *ngIf="(email.touched || loginForm.submitted) &&
-                       email.errors?.['required']"
+          email.errors?.['required']"
+            >Error : Email is required !</span
           >
-            Error : Email is required !
-          </span>
-
           <span
             class="text-danger"
             *ngIf="(email.touched || loginForm.submitted) &&
-                       email.errors?.['pattern']"
+          email.errors?.['pattern']"
+            >Error : Please provide a valid email address !</span
           >
-            Error : Please provide a valid email address !
-          </span>
         </div>
 
-        <!-- PASSWORD -->
         <div class="form-group">
           <div
             class="wrap-input100 validate-input"
@@ -58,46 +49,38 @@
               class="input100"
               type="password"
               name="password"
-              id="password"
               placeholder="Password"
+              id="password"
               required
-              minlength="5"
-              value="eazybytes54321"
               [(ngModel)]="model.password"
               #password="ngModel"
+              minlength="5"
             />
             <span class="focus-input100"></span>
           </div>
-
           <span
             class="text-danger"
             *ngIf="(password.touched || loginForm.submitted) &&
-                       password.errors?.['required']"
+          password.errors?.['required']"
+            >Error : Password is required !</span
           >
-            Error : Password is required !
-          </span>
-
           <span
             class="text-danger"
             *ngIf="(password.touched || loginForm.submitted) &&
-                       password.errors?.['minlength']"
+          password.errors?.['minlength']"
+            >Error : Password must be at least 5 characters long. !</span
           >
-            Error : Password must be at least 5 characters long. !
-          </span>
         </div>
-
-        <!-- FORGOT -->
         <div class="text-right p-t-13 p-b-23">
-          <span class="txt1">Forgot</span>
-          <a href="#" class="txt2">Password?</a>
+          <span class="txt1"> Forgot </span>
+
+          <a href="#" class="txt2"> Password? </a>
         </div>
 
-        <!-- SUBMIT -->
         <div class="container-login100-form-btn">
           <button class="login100-form-btn" type="submit">Sign in</button>
         </div>
 
-        <!-- SIGN UP -->
         <div class="flex-col-c p-t-40 p-b-20">
           <span class="txt1 p-b-9"> Don’t have an account? </span>
           <a href="#" class="txt3"> Sign up now </a>
