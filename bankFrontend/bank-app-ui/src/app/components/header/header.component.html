@@ -1,21 +1,48 @@
 <div data-navigation="container" class="i-top-header">
   <div class="wrapper top-section">
-    <div class="hleft"><a class="logo selfLogo" [routerLink]="user.authStatus!='AUTH' ? ['/home'] : ['/dashboard']"><img alt="logo"
-          src="../assets/images/logo.png"></a>
+    <!-- LOGO -->
+    <div class="hleft">
+      <a
+        class="logo selfLogo"
+        [routerLink]="user.authStatus != 'AUTH' ? ['/home'] : ['/dashboard']"
+      >
+        <img alt="logo" src="../assets/images/logo.png" />
+      </a>
     </div>
+
+    <!-- HAMBURGER -->
     <div class="mnav_hb hide">
-      <div class="hamburger"><span class="line"></span><span class="line"></span><span class="line"></span></div>
+      <div class="hamburger" (click)="toggleMenu()">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
     </div>
-    <nav class="hright dnav">
+
+    <!-- NAV -->
+    <nav class="hright dnav" [class.show]="menuOpen">
       <ul>
-        <li *ngIf="user.authStatus!='AUTH'" routerLinkActive="active"><a routerLink="/home">Home</a></li>
-        <li *ngIf="user.authStatus!='AUTH'" routerLinkActive="active"><a routerLink="/login">Login</a></li>
-        <li *ngIf="user.authStatus!='AUTH'" routerLinkActive="active"><a routerLink="/contact">Contact US</a></li>
-        <li *ngIf="user.authStatus!='AUTH'" routerLinkActive="active"><a routerLink="/notices">Notices</a></li>
-        <li *ngIf="user.authStatus=='AUTH'" routerLinkActive="active"><a routerLink="/dashboard">Dashboard</a></li>
-        <li *ngIf="user.authStatus=='AUTH'" routerLinkActive="active"><a routerLink="/logout">Logout</a></li>
+        <li *ngIf="user.authStatus != 'AUTH'" (click)="closeMenu()">
+          <a routerLink="/home">Home</a>
+        </li>
+        <li *ngIf="user.authStatus != 'AUTH'" (click)="closeMenu()">
+          <a routerLink="/login">Login</a>
+        </li>
+        <li *ngIf="user.authStatus != 'AUTH'" (click)="closeMenu()">
+          <a routerLink="/contact">Contact US</a>
+        </li>
+        <li *ngIf="user.authStatus != 'AUTH'" (click)="closeMenu()">
+          <a routerLink="/notices">Notices</a>
+        </li>
+        <li *ngIf="user.authStatus == 'AUTH'" (click)="closeMenu()">
+          <a routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li *ngIf="user.authStatus == 'AUTH'" (click)="closeMenu()">
+          <a routerLink="/logout">Logout</a>
+        </li>
       </ul>
     </nav>
   </div>
 </div>
+
 <router-outlet></router-outlet>

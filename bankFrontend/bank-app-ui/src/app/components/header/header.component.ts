@@ -4,20 +4,27 @@ import { User } from 'src/app/model/user.model';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  
-  user = new User();
+  menuOpen = false;
+  user: User = new User();
 
-  constructor() {
-    
-  }
+  ngOnInit(): void {
+    const storedUser = sessionStorage.getItem('userdetails');
 
-  ngOnInit() {
-    if(sessionStorage.getItem('userdetails')){
-      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
+    if (storedUser) {
+      this.user = JSON.parse(storedUser);
+    } else {
+      this.user.authStatus = 'NOT_AUTH';
     }
   }
 
+  toggleMenu(): void {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeMenu(): void {
+    this.menuOpen = false;
+  }
 }

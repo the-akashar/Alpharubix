@@ -6,24 +6,29 @@
   display: flex;
   position: relative;
 }
+
 .top-section {
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
 }
+
 .hleft {
   display: flex;
   align-items: center;
   position: relative;
 }
+
 .hleft .logo {
   margin-right: 18px;
   padding-left: 18px;
 }
+
 .hleft .logo img {
   max-width: 150px;
   display: block;
 }
+
 .hleft .logo .partner-txt {
   position: absolute;
   font-size: 10px;
@@ -32,30 +37,15 @@
   top: 10px;
 }
 
-.top-section {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 0;
-}
-
 .wrapper {
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
 }
 
-.hleft {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.hleft .logo {
-  margin-right: 18px;
-  padding-left: 18px;
-}
-
-a, a:link:hover, a:visited:hover {
+a,
+a:link:hover,
+a:visited:hover {
   text-decoration: none;
 }
 
@@ -69,11 +59,6 @@ a:-webkit-any-link {
   color: -webkit-link;
   cursor: pointer;
   text-decoration: underline;
-}
-
-.hleft .logo img {
-  max-width: 150px;
-  display: block;
 }
 
 img {
@@ -93,20 +78,22 @@ img {
   display: flex;
 }
 
-.hright ul li:first-child {
-  margin-left: 0;
-}
-
 .hright ul li {
   margin-left: 45px;
   position: relative;
 }
 
-ul, ul li {
+.hright ul li:first-child {
+  margin-left: 0;
+}
+
+ul,
+ul li {
   list-style: none;
 }
 
-.hright ul li.active a, .hright ul li:hover a {
+.hright ul li.active a,
+.hright ul li:hover a {
   border-top: 6px solid #57b846;
   padding-top: 20px;
 }
@@ -119,10 +106,6 @@ ul, ul li {
   padding-bottom: 8px;
 }
 
-a, a:link:hover, a:visited:hover {
-  text-decoration: none;
-}
-
 .hide {
   display: none !important;
 }
@@ -133,8 +116,122 @@ a, a:link:hover, a:visited:hover {
   background-color: #ecf0f1;
   display: block;
   margin: 8px auto;
-  -webkit-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
+/* =========================================================
+   RESPONSIVE FIXES — APPEND ONLY
+   ========================================================= */
+
+/* Prevent horizontal scroll */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* -------- MOBILE (<= 768px) -------- */
+@media (max-width: 768px) {
+  .i-top-header {
+    height: auto;
+  }
+
+  .top-section {
+    flex-direction: row;
+    padding: 10px 0;
+  }
+
+  .wrapper {
+    padding: 0 15px;
+  }
+
+  /* Logo */
+  .hleft .logo img {
+    max-width: 120px;
+  }
+
+  /* Hide menu by default */
+  .hright {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #000;
+    display: none;
+    flex-direction: column;
+    z-index: 999;
+  }
+
+  /* Show menu when active (JS toggles .show) */
+  .hright.show {
+    display: flex;
+  }
+
+  .hright ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hright ul li {
+    margin: 0;
+    text-align: center;
+    border-bottom: 1px solid #222;
+  }
+
+  .hright ul li a {
+    display: block;
+    padding: 15px 0;
+    font-size: 16px;
+  }
+
+  .hright ul li.active a,
+  .hright ul li:hover a {
+    border-top: none;
+    background: #57b846;
+    padding-top: 15px;
+  }
+
+  /* Hamburger visible */
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+/* -------- DESKTOP -------- */
+@media (min-width: 769px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+/* ===============================
+   FIX HAMBURGER VISIBILITY
+   =============================== */
+
+/* Desktop: hide mobile nav */
+.mnav_hb {
+  display: none;
+}
+
+/* Mobile: show hamburger, hide desktop nav */
+@media (max-width: 768px) {
+  .mnav_hb {
+    display: block !important; /* overrides .hide */
+  }
+
+  .dnav {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+/* 🔥 FORCE MENU OPEN WHEN show IS PRESENT */
+@media (max-width: 768px) {
+  .hright.show.dnav {
+    display: flex !important;
+  }
+}
